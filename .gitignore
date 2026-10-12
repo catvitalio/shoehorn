@@ -1,0 +1,7 @@
+node_modules/
+*.log
+.cache/
+dist/*.map
+.bundle/
+__pycache__/
+Shoehorn.zip

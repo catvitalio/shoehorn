@@ -1,0 +1,11 @@
+{
+  "name": "Shoehorn",
+  "author": "catvitalio",
+  "flags": ["debug"],
+  "api_version": 1,
+  "publish": {
+    "tags": ["mods", "files", "utility"],
+    "description": "Run a mod or translation installer inside a game's Proton prefix, from Gaming Mode.",
+    "image": "https://opengraph.githubassets.com/1/catvitalio/shoehorn"
+  }
+}
