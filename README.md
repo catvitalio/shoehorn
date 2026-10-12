@@ -73,7 +73,7 @@ Decky's plugin directory declaratively:
   inputs.shoehorn.url = "github:catvitalio/shoehorn";
 
   systemd.tmpfiles.rules = [
-    "L+ ${config.jovian.decky-loader.stateDir}/plugins/Shoehorn - - - - ${inputs.shoehorn.packages.${pkgs.system}.default}"
+    "L+ ${config.jovian.decky-loader.stateDir}/plugins/Shoehorn - - - - ${inputs.shoehorn.packages.${pkgs.stdenv.hostPlatform.system}.default}"
   ];
 }
 ```
