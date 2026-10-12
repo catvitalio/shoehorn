@@ -1,4 +1,3 @@
-import fcntl
 from pathlib import Path
 
 from shoehorn import api
@@ -66,10 +65,21 @@ def stub_path(installed: Path) -> str:
 def in_use(compat_path: Path) -> bool:
     """Whether Proton still holds this prefix. Wine rewrites the registry
     wholesale from memory when its server stops, so a write made now is both
-    invisible to what is running and gone once it exits."""
+    invisible to what is running and gone once it exits.
+
+    fcntl is imported here rather than at the top: Decky's own interpreter
+    carries only the modules its build happened to pull in, and the plugin has
+    to load even where this one check cannot run.
+    """
     lock = compat_path / PREFIX_LOCK
     if not lock.is_file():
         return False
+
+    try:
+        import fcntl
+    except ImportError:
+        return False
+
     try:
         with lock.open("r") as handle:
             fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
